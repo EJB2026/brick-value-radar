@@ -59,9 +59,9 @@
 }
 
 .filter-chip.active {
-  border-color: rgba(21, 128, 61, 0.3);
-  background: #edf9ef;
-  color: #0f7a34;
+  border-color: rgba(37, 99, 235, 0.35);
+  background: #eaf2ff;
+  color: #1d4ed8;
 }
 
 .theme-select-chip {
