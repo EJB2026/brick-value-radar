@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
-import setsData from "../data/sets.json";
-import themesData from "../data/themes.json";
-import type { LegoSet, LegoThemeOption } from "../types/lego";
-import { getRadarStatus } from "../utils/scoring";
-import { Header } from "./Header";
-import { MobileSetCard } from "./MobileSetCard";
-import { SearchAndFilters, type ActiveFilters, type SortOption, type ToggleFilter } from "./SearchAndFilters";
-import { SetCard } from "./SetCard";
-import { StatusSummary } from "./StatusSummary";
+import setsData from "../../data/sets.json";
+import themesData from "../../data/themes.json";
+import type { LegoSet, LegoThemeOption } from "../../types/lego";
+import { getRadarStatus } from "../../utils/scoring";
+import { Header } from "../Header/Header";
+import { MobileSetCard } from "../MobileSetCard/MobileSetCard";
+import { SearchAndFilters, type ActiveFilters, type SortOption, type ToggleFilter } from "../SearchAndFilters/SearchAndFilters";
+import { SetCard } from "../SetCard/SetCard";
+import { StatusSummary } from "../StatusSummary/StatusSummary";
 
 const sets = setsData as LegoSet[];
 const themeOptions = themesData as LegoThemeOption[];

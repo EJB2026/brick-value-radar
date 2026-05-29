@@ -1,4 +1,4 @@
-import type { LegoThemeOption } from "../types/lego";
+import type { LegoThemeOption } from "../../types/lego";
 
 export type ActiveFilters = {
   theme: string;

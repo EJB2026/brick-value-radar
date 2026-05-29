@@ -1,8 +1,8 @@
 @import "/src/styles/base.css";
 @import "/src/styles/layout.css";
-@import "/src/components/Header.css";
-@import "/src/components/SearchAndFilters.css";
-@import "/src/components/StatusSummary.css";
-@import "/src/components/InvestmentRadarPage.css";
-@import "/src/components/SetCard.css";
-@import "/src/components/MobileSetCard.css";
+@import "/src/components/Header/Header.css";
+@import "/src/components/SearchAndFilters/SearchAndFilters.css";
+@import "/src/components/StatusSummary/StatusSummary.css";
+@import "/src/components/InvestmentRadarPage/InvestmentRadarPage.css";
+@import "/src/components/SetCard/SetCard.css";
+@import "/src/components/MobileSetCard/MobileSetCard.css";

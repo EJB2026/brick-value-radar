@@ -1,5 +1,5 @@
-import type { LegoSet } from "../types/lego";
-import { formatCurrency, formatEolText, formatPercentage } from "../utils/formatters";
+import type { LegoSet } from "../../types/lego";
+import { formatCurrency, formatEolText, formatPercentage } from "../../utils/formatters";
 
 type SetCardProps = {
   set: LegoSet;
