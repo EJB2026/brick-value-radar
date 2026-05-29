@@ -180,6 +180,11 @@
   .desktop-nav {
     display: none;
   }
+
+  .menu-button {
+    display: inline-grid;
+    gap: 4px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -191,11 +196,6 @@
   .header-inner {
     min-height: 76px;
     padding: 0 14px;
-  }
-
-  .menu-button {
-    display: inline-grid;
-    gap: 4px;
   }
 
   .brand {
