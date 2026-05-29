@@ -15,22 +15,21 @@ type SearchAndFiltersProps = {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   activeFilters: ActiveFilters;
+  themeOptions: LegoThemeOption[];
+  onThemeChange: (value: string) => void;
+};
+
+type FilterControlsProps = {
+  activeFilters: ActiveFilters;
   onToggleFilter: (filter: ToggleFilter) => void;
   filtersOpen: boolean;
   onToggleFiltersOpen: () => void;
-  themeOptions: LegoThemeOption[];
-  onThemeChange: (value: string) => void;
-  sortOption: SortOption;
-  onSortChange: (value: SortOption) => void;
 };
 
-export function SearchAndFilters({
+export function SearchAndTheme({
   searchTerm,
   onSearchChange,
   activeFilters,
-  onToggleFilter,
-  filtersOpen,
-  onToggleFiltersOpen,
   themeOptions,
   onThemeChange,
 }: SearchAndFiltersProps) {
@@ -47,7 +46,7 @@ export function SearchAndFilters({
         />
       </label>
 
-      <div className="filter-layout">
+      <div className="theme-row">
         <label className={`filter-chip theme-select-chip ${activeFilters.theme !== "all" ? "active" : ""}`}>
           <span aria-hidden="true">☷</span>
           <span>Thema</span>
@@ -63,6 +62,20 @@ export function SearchAndFilters({
             ))}
           </select>
         </label>
+      </div>
+    </section>
+  );
+}
+
+export function FilterControls({
+  activeFilters,
+  onToggleFilter,
+  filtersOpen,
+  onToggleFiltersOpen,
+}: FilterControlsProps) {
+  return (
+    <section className="search-section filter-controls-section" aria-label="Filters">
+      <div className="filter-layout">
         <div className="filter-toolbar">
           <button
             className="filter-chip filters-button"
@@ -77,7 +90,7 @@ export function SearchAndFilters({
           </button>
         </div>
 
-        <div className={`filters-panel ${filtersOpen ? "open" : "collapsed"}`} id="mobile-filters-panel" aria-label="Filters">
+        <div className={`filters-panel ${filtersOpen ? "open" : "collapsed"}`} id="mobile-filters-panel">
           <button
             className={`filter-chip ${activeFilters.score80 ? "active" : ""}`}
             type="button"

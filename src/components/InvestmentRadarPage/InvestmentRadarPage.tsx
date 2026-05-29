@@ -5,7 +5,13 @@ import type { LegoSet, LegoThemeOption } from "../../types/lego";
 import { getRadarStatus } from "../../utils/scoring";
 import { Header } from "../Header/Header";
 import { MobileSetCard } from "../MobileSetCard/MobileSetCard";
-import { SearchAndFilters, type ActiveFilters, type SortOption, type ToggleFilter } from "../SearchAndFilters/SearchAndFilters";
+import {
+  FilterControls,
+  SearchAndTheme,
+  type ActiveFilters,
+  type SortOption,
+  type ToggleFilter,
+} from "../SearchAndFilters/SearchAndFilters";
 import { SetCard } from "../SetCard/SetCard";
 import { StatusSummary } from "../StatusSummary/StatusSummary";
 
@@ -98,20 +104,22 @@ export function InvestmentRadarPage() {
     <div className="app-shell">
       <Header />
       <main className="page-content">
-        <SearchAndFilters
+        <SearchAndTheme
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
+          activeFilters={activeFilters}
+          themeOptions={themeOptions}
+          onThemeChange={setThemeFilter}
+        />
+
+        <StatusSummary counts={statusCounts} />
+
+        <FilterControls
           activeFilters={activeFilters}
           onToggleFilter={toggleFilter}
           filtersOpen={filtersOpen}
           onToggleFiltersOpen={() => setFiltersOpen((current) => !current)}
-          themeOptions={themeOptions}
-          onThemeChange={setThemeFilter}
-          sortOption={sortOption}
-          onSortChange={setSortOption}
         />
-
-        <StatusSummary counts={statusCounts} />
 
         <section className="opportunity-section" aria-labelledby="top-kansen-title">
           <div className="section-heading">
