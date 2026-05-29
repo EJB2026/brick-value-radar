@@ -1,0 +1,26 @@
+[
+  {
+    "id": "all",
+    "label": "Alle thema's"
+  },
+  {
+    "id": "icons",
+    "label": "Icons"
+  },
+  {
+    "id": "ideas",
+    "label": "Ideas"
+  },
+  {
+    "id": "star-wars",
+    "label": "Star Wars"
+  },
+  {
+    "id": "technic",
+    "label": "Technic"
+  },
+  {
+    "id": "friends",
+    "label": "Friends"
+  }
+]

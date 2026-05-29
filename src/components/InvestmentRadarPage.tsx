@@ -1,14 +1,16 @@
 import { useMemo, useState } from "react";
 import setsData from "../data/sets.json";
-import type { LegoSet } from "../types/lego";
+import themesData from "../data/themes.json";
+import type { LegoSet, LegoThemeOption } from "../types/lego";
 import { getRadarStatus } from "../utils/scoring";
 import { Header } from "./Header";
 import { MobileSetCard } from "./MobileSetCard";
-import { SearchAndFilters, type ActiveFilters, type SortOption } from "./SearchAndFilters";
+import { SearchAndFilters, type ActiveFilters, type SortOption, type ToggleFilter } from "./SearchAndFilters";
 import { SetCard } from "./SetCard";
 import { StatusSummary } from "./StatusSummary";
 
 const sets = setsData as LegoSet[];
+const themeOptions = themesData as LegoThemeOption[];
 
 const sortLabels: Record<SortOption, string> = {
   "score-desc": "Score hoog naar laag",
@@ -20,6 +22,7 @@ const sortLabels: Record<SortOption, string> = {
 export function InvestmentRadarPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
+    theme: "all",
     score80: false,
     discount20: false,
     eol12: false,
@@ -41,6 +44,8 @@ export function InvestmentRadarPage() {
 
   const filteredAndSortedSets = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
+    const selectedTheme = themeOptions.find((theme) => theme.id === activeFilters.theme);
+    const selectedThemeLabel = selectedTheme?.id === "all" ? undefined : selectedTheme?.label;
 
     return sets
       .filter((set) => {
@@ -50,13 +55,14 @@ export function InvestmentRadarPage() {
           set.name.toLowerCase().includes(normalizedSearch) ||
           set.theme.toLowerCase().includes(normalizedSearch);
 
+        const matchesTheme = !selectedThemeLabel || set.theme === selectedThemeLabel;
         const matchesScore = !activeFilters.score80 || set.investmentScore >= 80;
         const matchesDiscount = !activeFilters.discount20 || set.discountPercentage >= 20;
         const matchesEol =
           !activeFilters.eol12 ||
           (typeof set.estimatedEolWindowMonths === "number" && set.estimatedEolWindowMonths < 12);
 
-        return matchesSearch && matchesScore && matchesDiscount && matchesEol;
+        return matchesSearch && matchesTheme && matchesScore && matchesDiscount && matchesEol;
       })
       .sort((first, second) => {
         switch (sortOption) {
@@ -73,10 +79,17 @@ export function InvestmentRadarPage() {
       });
   }, [activeFilters, searchTerm, sortOption]);
 
-  function toggleFilter(filter: keyof ActiveFilters) {
+  function toggleFilter(filter: ToggleFilter) {
     setActiveFilters((current) => ({
       ...current,
       [filter]: !current[filter],
+    }));
+  }
+
+  function setThemeFilter(theme: string) {
+    setActiveFilters((current) => ({
+      ...current,
+      theme,
     }));
   }
 
@@ -89,6 +102,8 @@ export function InvestmentRadarPage() {
           onSearchChange={setSearchTerm}
           activeFilters={activeFilters}
           onToggleFilter={toggleFilter}
+          themeOptions={themeOptions}
+          onThemeChange={setThemeFilter}
           sortOption={sortOption}
           onSortChange={setSortOption}
         />

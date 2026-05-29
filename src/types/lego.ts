@@ -37,3 +37,8 @@ export type LegoSet = {
   dataQualityScore?: number;
   lastUpdated: string;
 };
+
+export type LegoThemeOption = {
+  id: string;
+  label: string;
+};

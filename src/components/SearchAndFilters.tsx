@@ -1,8 +1,13 @@
+import type { LegoThemeOption } from "../types/lego";
+
 export type ActiveFilters = {
+  theme: string;
   score80: boolean;
   discount20: boolean;
   eol12: boolean;
 };
+
+export type ToggleFilter = Exclude<keyof ActiveFilters, "theme">;
 
 export type SortOption = "score-desc" | "score-asc" | "price-asc" | "discount-desc";
 
@@ -10,7 +15,9 @@ type SearchAndFiltersProps = {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   activeFilters: ActiveFilters;
-  onToggleFilter: (filter: keyof ActiveFilters) => void;
+  onToggleFilter: (filter: ToggleFilter) => void;
+  themeOptions: LegoThemeOption[];
+  onThemeChange: (value: string) => void;
   sortOption: SortOption;
   onSortChange: (value: SortOption) => void;
 };
@@ -20,6 +27,8 @@ export function SearchAndFilters({
   onSearchChange,
   activeFilters,
   onToggleFilter,
+  themeOptions,
+  onThemeChange,
 }: SearchAndFiltersProps) {
   return (
     <section className="search-section" aria-label="Zoeken en filters">
@@ -35,13 +44,21 @@ export function SearchAndFilters({
       </label>
 
       <div className="filter-row" aria-label="Filters">
-        <button className="filter-chip" type="button" aria-label="Thema filter">
+        <label className={`filter-chip theme-select-chip ${activeFilters.theme !== "all" ? "active" : ""}`}>
           <span aria-hidden="true">☷</span>
-          Thema
-          <span className="chip-caret" aria-hidden="true">
-            ⌄
-          </span>
-        </button>
+          <span>Thema</span>
+          <select
+            value={activeFilters.theme}
+            onChange={(event) => onThemeChange(event.target.value)}
+            aria-label="Thema filter"
+          >
+            {themeOptions.map((theme) => (
+              <option key={theme.id} value={theme.id}>
+                {theme.label}
+              </option>
+            ))}
+          </select>
+        </label>
         <button
           className={`filter-chip ${activeFilters.score80 ? "active" : ""}`}
           type="button"

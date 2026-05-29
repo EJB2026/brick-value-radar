@@ -278,6 +278,20 @@ a {
   color: #0f7a34;
 }
 
+.theme-select-chip {
+  position: relative;
+}
+
+.theme-select-chip select {
+  max-width: 150px;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
 .chip-icon.gold {
   color: var(--gold);
 }
@@ -817,6 +831,10 @@ a {
     padding: 0 11px;
     border-radius: 9px;
     font-size: 0.78rem;
+  }
+
+  .theme-select-chip select {
+    max-width: 112px;
   }
 
   .filters-button {
