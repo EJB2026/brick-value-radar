@@ -56,9 +56,6 @@ export function Header() {
           <button className="icon-button theme-button" type="button" aria-label={messages.header.lightTheme}>
             <span aria-hidden="true">☼</span>
           </button>
-          <button className="profile-button" type="button" aria-label={messages.header.profile}>
-            <span aria-hidden="true">●</span>
-          </button>
         </div>
       </div>
     </header>
