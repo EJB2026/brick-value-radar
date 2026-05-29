@@ -1,9 +1,9 @@
-export function formatCurrency(value: number): string {
-  return new Intl.NumberFormat("nl-NL", {
+export function formatCurrency(value: number, locale: string, fractionDigits = 2): string {
+  return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: "EUR",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
   }).format(value);
 }
 
@@ -11,10 +11,16 @@ export function formatPercentage(value: number): string {
   return `${Math.round(value)}%`;
 }
 
-export function formatEolText(date?: string, windowMonths?: number): string {
-  if (!date) return "Onbekend";
+export function formatEolText(
+  date: string | undefined,
+  windowMonths: number | undefined,
+  locale: string,
+  unknownLabel: string,
+  monthsShortLabel: string,
+): string {
+  if (!date) return unknownLabel;
 
-  const formattedDate = new Intl.DateTimeFormat("nl-NL", {
+  const formattedDate = new Intl.DateTimeFormat(locale, {
     month: "short",
     year: "numeric",
   })
@@ -22,5 +28,5 @@ export function formatEolText(date?: string, windowMonths?: number): string {
     .replace(".", "");
 
   if (!windowMonths) return formattedDate;
-  return `${formattedDate} (${windowMonths} mnd)`;
+  return `${formattedDate} (${windowMonths} ${monthsShortLabel})`;
 }

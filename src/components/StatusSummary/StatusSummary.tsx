@@ -1,4 +1,5 @@
 import type { RadarStatus } from "../../types/lego";
+import { useI18n } from "../../i18n/I18nProvider";
 
 type StatusSummaryProps = {
   counts: {
@@ -11,8 +12,10 @@ type StatusSummaryProps = {
 };
 
 export function StatusSummary({ counts, activeStatus, onStatusSelect }: StatusSummaryProps) {
+  const { messages } = useI18n();
+
   return (
-    <section className="status-grid" aria-label="Status samenvatting">
+    <section className="status-grid" aria-label={messages.status.section}>
       <button
         className={`summary-card summary-buy ${activeStatus === "koopwaardig" ? "active" : ""}`}
         type="button"
@@ -23,9 +26,9 @@ export function StatusSummary({ counts, activeStatus, onStatusSelect }: StatusSu
           🛒
         </div>
         <div>
-          <h2>Koopwaardig</h2>
+          <h2>{messages.status.labels.koopwaardig}</h2>
           <strong>{counts.koopwaardig}</strong>
-          <p>Klaar om te kopen</p>
+          <p>{messages.status.descriptions.koopwaardig}</p>
         </div>
       </button>
       <button
@@ -38,9 +41,9 @@ export function StatusSummary({ counts, activeStatus, onStatusSelect }: StatusSu
           ◉
         </div>
         <div>
-          <h2>Volgen</h2>
+          <h2>{messages.status.labels.volgen}</h2>
           <strong>{counts.volgen}</strong>
-          <p>Houd in de gaten</p>
+          <p>{messages.status.descriptions.volgen}</p>
         </div>
       </button>
       <button
@@ -53,9 +56,9 @@ export function StatusSummary({ counts, activeStatus, onStatusSelect }: StatusSu
           ⧖
         </div>
         <div>
-          <h2>Wachten</h2>
+          <h2>{messages.status.labels.wachten}</h2>
           <strong>{counts.wachten}</strong>
-          <p>Nog niet interessant</p>
+          <p>{messages.status.descriptions.wachten}</p>
         </div>
       </button>
     </section>

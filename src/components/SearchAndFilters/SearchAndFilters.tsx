@@ -1,4 +1,5 @@
 import type { LegoThemeOption } from "../../types/lego";
+import { useI18n } from "../../i18n/I18nProvider";
 
 export type ActiveFilters = {
   theme: string;
@@ -33,31 +34,33 @@ export function SearchAndTheme({
   themeOptions,
   onThemeChange,
 }: SearchAndFiltersProps) {
+  const { messages } = useI18n();
+
   return (
-    <section className="search-section" aria-label="Zoeken en filters">
+    <section className="search-section" aria-label={messages.search.section}>
       <label className="search-box">
         <span aria-hidden="true">⌕</span>
         <input
           type="search"
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}
-          placeholder="Zoek een setnummer, naam of thema..."
-          aria-label="Zoek een setnummer, naam of thema"
+          placeholder={messages.search.placeholder}
+          aria-label={messages.search.label}
         />
       </label>
 
       <div className="theme-row">
         <label className={`filter-chip theme-select-chip ${activeFilters.theme !== "all" ? "active" : ""}`}>
           <span aria-hidden="true">☷</span>
-          <span>Thema</span>
+          <span>{messages.search.theme}</span>
           <select
             value={activeFilters.theme}
             onChange={(event) => onThemeChange(event.target.value)}
-            aria-label="Thema filter"
+            aria-label={messages.search.themeFilter}
           >
             {themeOptions.map((theme) => (
               <option key={theme.id} value={theme.id}>
-                {theme.label}
+                {theme.id === "all" ? messages.search.allThemes : theme.label}
               </option>
             ))}
           </select>
@@ -73,8 +76,10 @@ export function FilterControls({
   filtersOpen,
   onToggleFiltersOpen,
 }: FilterControlsProps) {
+  const { messages } = useI18n();
+
   return (
-    <section className="search-section filter-controls-section" aria-label="Filters">
+    <section className="search-section filter-controls-section" aria-label={messages.filters.section}>
       <div className="filter-layout">
         <div className="filter-toolbar">
           <button
@@ -83,10 +88,10 @@ export function FilterControls({
             onClick={onToggleFiltersOpen}
             aria-expanded={filtersOpen}
             aria-controls="mobile-filters-panel"
-            aria-label={filtersOpen ? "Filters verbergen" : "Filters tonen"}
+            aria-label={filtersOpen ? messages.filters.hide : messages.filters.show}
           >
             <span aria-hidden="true">≡</span>
-            Filters
+            {messages.filters.label}
           </button>
         </div>
 
@@ -100,7 +105,7 @@ export function FilterControls({
             <span className="chip-icon gold" aria-hidden="true">
               ★
             </span>
-            Score 80+
+            {messages.filters.score80}
           </button>
           <button
             className={`filter-chip ${activeFilters.discount20 ? "active" : ""}`}
@@ -109,7 +114,7 @@ export function FilterControls({
             aria-pressed={activeFilters.discount20}
           >
             <span aria-hidden="true">◇</span>
-            Korting 20%+
+            {messages.filters.discount20}
           </button>
           <button
             className={`filter-chip ${activeFilters.eol12 ? "active" : ""}`}
@@ -118,7 +123,7 @@ export function FilterControls({
             aria-pressed={activeFilters.eol12}
           >
             <span aria-hidden="true">◷</span>
-            EOL &lt; 12 mnd
+            {messages.filters.eol12}
           </button>
         </div>
       </div>

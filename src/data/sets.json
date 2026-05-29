@@ -20,8 +20,10 @@
     "estimatedEolWindowMonths": 7,
     "investmentScore": 86,
     "radarStatus": "koopwaardig",
-    "buyBelowPriceEur": 335,
-    "adviceSummary": "Koop onder €335",
+    "advice": {
+      "type": "buyBelow",
+      "amountEur": 335
+    },
     "dataQualityScore": 91,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -46,8 +48,10 @@
     "estimatedEolWindowMonths": 0,
     "investmentScore": 82,
     "radarStatus": "koopwaardig",
-    "buyBelowPriceEur": 165,
-    "adviceSummary": "Koop onder €165",
+    "advice": {
+      "type": "buyBelow",
+      "amountEur": 165
+    },
     "dataQualityScore": 88,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -72,8 +76,10 @@
     "estimatedEolWindowMonths": 3,
     "investmentScore": 80,
     "radarStatus": "koopwaardig",
-    "buyBelowPriceEur": 465,
-    "adviceSummary": "Koop onder €465",
+    "advice": {
+      "type": "buyBelow",
+      "amountEur": 465
+    },
     "dataQualityScore": 86,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -98,8 +104,9 @@
     "estimatedEolWindowMonths": 7,
     "investmentScore": 79,
     "radarStatus": "volgen",
-    "buyBelowPriceEur": 425,
-    "adviceSummary": "Wacht & volg",
+    "advice": {
+      "type": "waitAndWatch"
+    },
     "dataQualityScore": 84,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -122,8 +129,9 @@
     "estimatedEolWindowMonths": 6,
     "investmentScore": 74,
     "radarStatus": "volgen",
-    "buyBelowPriceEur": 605,
-    "adviceSummary": "Volg prijsdaling",
+    "advice": {
+      "type": "watchPriceDrop"
+    },
     "dataQualityScore": 82,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -146,8 +154,9 @@
     "estimatedEolWindowMonths": 19,
     "investmentScore": 61,
     "radarStatus": "wachten",
-    "buyBelowPriceEur": 520,
-    "adviceSummary": "Wacht op sterkere korting",
+    "advice": {
+      "type": "waitForBetterDiscount"
+    },
     "dataQualityScore": 79,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -172,8 +181,9 @@
     "estimatedEolWindowMonths": 5,
     "investmentScore": 77,
     "radarStatus": "volgen",
-    "buyBelowPriceEur": 675,
-    "adviceSummary": "Wacht & volg",
+    "advice": {
+      "type": "waitAndWatch"
+    },
     "dataQualityScore": 85,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -196,8 +206,10 @@
     "estimatedEolWindowMonths": 4,
     "investmentScore": 81,
     "radarStatus": "koopwaardig",
-    "buyBelowPriceEur": 350,
-    "adviceSummary": "Koop onder €350",
+    "advice": {
+      "type": "buyBelow",
+      "amountEur": 350
+    },
     "dataQualityScore": 83,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -222,8 +234,9 @@
     "estimatedEolWindowMonths": 0,
     "investmentScore": 68,
     "radarStatus": "volgen",
-    "buyBelowPriceEur": 210,
-    "adviceSummary": "Volg marktwaarde",
+    "advice": {
+      "type": "watchMarketValue"
+    },
     "dataQualityScore": 80,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   },
@@ -248,8 +261,9 @@
     "estimatedEolWindowMonths": 14,
     "investmentScore": 58,
     "radarStatus": "wachten",
-    "buyBelowPriceEur": 65,
-    "adviceSummary": "Nog niet interessant",
+    "advice": {
+      "type": "notInterestingYet"
+    },
     "dataQualityScore": 76,
     "lastUpdated": "2026-05-18T08:45:00.000Z"
   }

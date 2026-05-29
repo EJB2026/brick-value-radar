@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import type { RadarStatus, LegoSet, LegoThemeOption } from "../../types/lego";
 import { getRadarStatus } from "../../utils/scoring";
 import type { ActiveFilters, SortOption } from "../SearchAndFilters/SearchAndFilters";
-import { statusSectionTitles } from "./investmentRadarConfig";
 
 type UseInvestmentRadarDataArgs = {
   sets: LegoSet[];
@@ -21,8 +20,6 @@ export function useInvestmentRadarData({
   activeStatus,
   sortOption,
 }: UseInvestmentRadarDataArgs) {
-  const opportunityTitle = activeStatus ? statusSectionTitles[activeStatus] : "Radar overzicht";
-
   const statusCounts = useMemo(
     () =>
       sets.reduce(
@@ -92,7 +89,6 @@ export function useInvestmentRadarData({
   }, [activeFilters, activeStatus, searchTerm, sets, sortOption, themeOptions]);
 
   return {
-    opportunityTitle,
     statusCounts,
     filteredAndSortedSets,
   };

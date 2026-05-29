@@ -126,6 +126,34 @@
   background: #f3f4f6;
 }
 
+.language-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.language-select::after {
+  position: absolute;
+  right: 10px;
+  color: #4b5563;
+  font-size: 0.72rem;
+  pointer-events: none;
+  content: "⌄";
+}
+
+.language-select select {
+  width: 68px;
+  height: 42px;
+  padding: 0 28px 0 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  color: #111827;
+  background: #f3f4f6;
+  font-weight: 800;
+  letter-spacing: 0;
+  appearance: none;
+}
+
 .theme-button {
   color: #4b5563;
   font-size: 1.55rem;
@@ -229,6 +257,12 @@
   .icon-button {
     width: 36px;
     height: 36px;
+  }
+
+  .language-select select {
+    width: 62px;
+    height: 36px;
+    padding-left: 12px;
   }
 }
 

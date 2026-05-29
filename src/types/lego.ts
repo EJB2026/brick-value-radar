@@ -1,5 +1,18 @@
 export type RadarStatus = "koopwaardig" | "volgen" | "wachten";
 
+export type AdviceType =
+  | "buyBelow"
+  | "waitAndWatch"
+  | "watchPriceDrop"
+  | "waitForBetterDiscount"
+  | "watchMarketValue"
+  | "notInterestingYet";
+
+export type InvestmentAdvice = {
+  type: AdviceType;
+  amountEur?: number;
+};
+
 export type RetirementStatus =
   | "available"
   | "retiring-soon"
@@ -31,8 +44,7 @@ export type LegoSet = {
 
   investmentScore: number;
   radarStatus: RadarStatus;
-  buyBelowPriceEur?: number;
-  adviceSummary: string;
+  advice: InvestmentAdvice;
 
   dataQualityScore?: number;
   lastUpdated: string;

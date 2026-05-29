@@ -1,5 +1,6 @@
 import setsData from "../../data/sets.json";
 import themesData from "../../data/themes.json";
+import { useI18n } from "../../i18n/I18nProvider";
 import type { LegoSet, LegoThemeOption } from "../../types/lego";
 import { Header } from "../Header/Header";
 import {
@@ -15,6 +16,7 @@ const sets = setsData as LegoSet[];
 const themeOptions = themesData as LegoThemeOption[];
 
 export function InvestmentRadarPage() {
+  const { messages } = useI18n();
   const {
     searchTerm,
     setSearchTerm,
@@ -28,7 +30,7 @@ export function InvestmentRadarPage() {
     setThemeFilter,
     toggleFiltersOpen,
   } = useInvestmentRadarControls();
-  const { opportunityTitle, statusCounts, filteredAndSortedSets } = useInvestmentRadarData({
+  const { statusCounts, filteredAndSortedSets } = useInvestmentRadarData({
     sets,
     themeOptions,
     searchTerm,
@@ -36,6 +38,9 @@ export function InvestmentRadarPage() {
     activeStatus,
     sortOption,
   });
+  const opportunityTitle = activeStatus
+    ? messages.opportunity.titles[activeStatus]
+    : messages.opportunity.titles.overview;
 
   return (
     <div className="app-shell">
@@ -71,8 +76,8 @@ export function InvestmentRadarPage() {
       </main>
 
       <footer className="app-footer">
-        <span>Prijzen en data bijgewerkt: 18 mei 2026, 08:45</span>
-        <span>Data afkomstig van lokale mockdata</span>
+        <span>{messages.footer.updated}</span>
+        <span>{messages.footer.source}</span>
       </footer>
     </div>
   );
