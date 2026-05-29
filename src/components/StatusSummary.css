@@ -1,0 +1,145 @@
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 36px;
+}
+
+.summary-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-height: 148px;
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+.summary-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.18rem;
+}
+
+.summary-card strong {
+  display: block;
+  color: var(--green);
+  font-size: 2.7rem;
+  line-height: 0.95;
+}
+
+.summary-card p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.summary-icon {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  color: var(--green);
+  background: var(--green-soft);
+  font-size: 2.15rem;
+}
+
+.summary-watch .summary-icon,
+.summary-watch strong {
+  color: #ca8a04;
+}
+
+.summary-watch .summary-icon {
+  background: var(--gold-soft);
+}
+
+.summary-wait .summary-icon,
+.summary-wait strong {
+  color: var(--red);
+}
+
+.summary-wait .summary-icon {
+  background: var(--red-soft);
+}
+
+.summary-arrow {
+  color: #111827;
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .status-grid {
+    gap: 14px;
+  }
+
+  .summary-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    min-height: 142px;
+    gap: 10px;
+    padding: 18px 12px;
+    text-align: center;
+  }
+
+  .summary-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.45rem;
+  }
+
+  .summary-card h2 {
+    font-size: 0.88rem;
+  }
+
+  .summary-card strong {
+    font-size: 2rem;
+  }
+
+  .summary-card p {
+    font-size: 0.8rem;
+  }
+
+  .summary-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .status-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .summary-card {
+    min-height: 92px;
+    padding: 10px 6px;
+    border-radius: 11px;
+  }
+
+  .summary-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .summary-card h2 {
+    margin-bottom: 3px;
+    font-size: 0.62rem;
+  }
+
+  .summary-card strong {
+    font-size: 1.45rem;
+  }
+
+  .summary-card p {
+    margin-top: 3px;
+    font-size: 0.55rem;
+    line-height: 1.1;
+  }
+}
