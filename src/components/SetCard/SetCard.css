@@ -3,8 +3,8 @@
 .empty-state {
   border: 1px solid var(--border);
   border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 8px 22px rgba(17, 24, 39, 0.06);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .set-card {
@@ -35,10 +35,10 @@
   border: 6px solid var(--green-line);
   border-left-color: #dfe5e9;
   border-radius: 50%;
-  background: #ffffff;
-  color: #111827;
+  background: var(--surface);
+  color: var(--text-primary);
   line-height: 1;
-  box-shadow: 0 3px 9px rgba(17, 24, 39, 0.08);
+  box-shadow: var(--shadow);
 }
 
 .score-ring {
@@ -71,7 +71,7 @@
 
 .set-number {
   display: block;
-  color: #111827;
+  color: var(--text-primary);
   font-size: 1.12rem;
   font-weight: 800;
 }
@@ -79,7 +79,7 @@
 .set-title-row h3,
 .mobile-set-heading h3 {
   margin: 3px 0 0;
-  color: #111827;
+  color: var(--text-primary);
   font-size: 1.16rem;
   line-height: 1.16;
 }
@@ -127,14 +127,14 @@
 
 .metrics-list dt,
 .mobile-metrics dt {
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
 .metrics-list dd,
 .mobile-metrics dd {
   margin: 0;
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 800;
   text-align: right;
 }
@@ -174,6 +174,24 @@
 .status-wachten .mobile-advice {
   color: #991b1b;
   background: linear-gradient(90deg, #fee7e7, #fff3ed);
+}
+
+html[data-theme="dark"] .advice-bar,
+html[data-theme="dark"] .mobile-advice {
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.14), rgba(15, 23, 42, 0.92));
+  color: #bbf7d0;
+}
+
+html[data-theme="dark"] .status-volgen .advice-bar,
+html[data-theme="dark"] .status-volgen .mobile-advice {
+  background: linear-gradient(90deg, rgba(245, 180, 0, 0.16), rgba(15, 23, 42, 0.92));
+  color: #fde68a;
+}
+
+html[data-theme="dark"] .status-wachten .advice-bar,
+html[data-theme="dark"] .status-wachten .mobile-advice {
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.16), rgba(15, 23, 42, 0.92));
+  color: #fecaca;
 }
 
 @media (max-width: 767px) {

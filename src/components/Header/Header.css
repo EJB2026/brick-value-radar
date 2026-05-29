@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--surface-elevated);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(18px);
 }
@@ -20,7 +20,7 @@
   align-items: center;
   gap: 16px;
   justify-self: start;
-  color: #0b1220;
+  color: var(--text-primary);
   font-size: clamp(1.25rem, 2vw, 1.85rem);
   font-weight: 800;
   letter-spacing: 0;
@@ -63,8 +63,8 @@
   height: 27px;
   border: 3px solid #0f7a34;
   border-radius: 50%;
-  background: #f7fff9;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.92);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--surface-elevated);
 }
 
 .radar-dot {
@@ -83,7 +83,7 @@
   align-items: center;
   justify-content: center;
   gap: clamp(28px, 4vw, 58px);
-  color: #374151;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .desktop-nav a.active {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .desktop-nav a.active::after {
@@ -121,8 +121,8 @@
   height: 42px;
   border: 0;
   border-radius: 50%;
-  color: #111827;
-  background: #f3f4f6;
+  color: var(--text-primary);
+  background: var(--surface-soft);
 }
 
 .language-select {
@@ -134,7 +134,7 @@
 .language-select::after {
   position: absolute;
   right: 10px;
-  color: #4b5563;
+  color: var(--text-muted);
   font-size: 0.72rem;
   pointer-events: none;
   content: "⌄";
@@ -144,17 +144,17 @@
   width: 68px;
   height: 42px;
   padding: 0 28px 0 14px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 999px;
-  color: #111827;
-  background: #f3f4f6;
+  color: var(--text-primary);
+  background: var(--surface-soft);
   font-weight: 800;
   letter-spacing: 0;
   appearance: none;
 }
 
 .theme-button {
-  color: #4b5563;
+  color: var(--text-muted);
   font-size: 1.55rem;
   background: transparent;
 }
@@ -169,7 +169,7 @@
   width: 20px;
   height: 2px;
   border-radius: 99px;
-  background: #111827;
+  background: var(--text-primary);
 }
 
 @media (max-width: 1180px) {
@@ -239,12 +239,8 @@
     height: 5px;
   }
 
-  .theme-button {
-    display: none;
-  }
-
   .header-actions {
-    gap: 0;
+    gap: 8px;
   }
 
   .icon-button {

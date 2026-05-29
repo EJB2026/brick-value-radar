@@ -38,7 +38,7 @@
 
   .mobile-set-heading span {
     display: block;
-    color: #111827;
+    color: var(--text-primary);
     font-size: 0.83rem;
     font-weight: 900;
   }

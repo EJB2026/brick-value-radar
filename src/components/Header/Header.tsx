@@ -13,7 +13,7 @@ function BrickLogo() {
 }
 
 export function Header() {
-  const { locale, setLocale, messages } = useI18n();
+  const { locale, setLocale, theme, toggleTheme, messages } = useI18n();
 
   return (
     <header className="app-header">
@@ -53,8 +53,14 @@ export function Header() {
               ))}
             </select>
           </label>
-          <button className="icon-button theme-button" type="button" aria-label={messages.header.lightTheme}>
-            <span aria-hidden="true">☼</span>
+          <button
+            className="icon-button theme-button"
+            type="button"
+            onClick={toggleTheme}
+            aria-pressed={theme === "dark"}
+            aria-label={theme === "dark" ? messages.header.lightTheme : messages.header.darkTheme}
+          >
+            <span aria-hidden="true">{theme === "dark" ? "☼" : "☾"}</span>
           </button>
         </div>
       </div>
