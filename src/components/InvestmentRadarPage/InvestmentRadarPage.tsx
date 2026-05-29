@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import setsData from "../../data/sets.json";
 import themesData from "../../data/themes.json";
-import type { LegoSet, LegoThemeOption } from "../../types/lego";
+import type { LegoSet, LegoThemeOption, RadarStatus } from "../../types/lego";
 import { getRadarStatus } from "../../utils/scoring";
 import { Header } from "../Header/Header";
 import { MobileSetCard } from "../MobileSetCard/MobileSetCard";
@@ -25,9 +25,16 @@ const sortLabels: Record<SortOption, string> = {
   "discount-desc": "Hoogste korting",
 };
 
+const statusSectionTitles: Record<RadarStatus, string> = {
+  koopwaardig: "Top koopkansen",
+  volgen: "Sets om te volgen",
+  wachten: "Sets om af te wachten",
+};
+
 export function InvestmentRadarPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [activeStatus, setActiveStatus] = useState<RadarStatus | null>(null);
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     theme: "all",
     score80: false,
@@ -35,6 +42,7 @@ export function InvestmentRadarPage() {
     eol12: false,
   });
   const [sortOption, setSortOption] = useState<SortOption>("score-desc");
+  const opportunityTitle = activeStatus ? statusSectionTitles[activeStatus] : "Radar overzicht";
 
   const statusCounts = useMemo(
     () =>
@@ -63,13 +71,15 @@ export function InvestmentRadarPage() {
           set.theme.toLowerCase().includes(normalizedSearch);
 
         const matchesTheme = !selectedThemeLabel || set.theme === selectedThemeLabel;
+        const setStatus = set.radarStatus ?? getRadarStatus(set.investmentScore);
+        const matchesStatus = !activeStatus || setStatus === activeStatus;
         const matchesScore = !activeFilters.score80 || set.investmentScore >= 80;
         const matchesDiscount = !activeFilters.discount20 || set.discountPercentage >= 20;
         const matchesEol =
           !activeFilters.eol12 ||
           (typeof set.estimatedEolWindowMonths === "number" && set.estimatedEolWindowMonths < 12);
 
-        return matchesSearch && matchesTheme && matchesScore && matchesDiscount && matchesEol;
+        return matchesSearch && matchesTheme && matchesStatus && matchesScore && matchesDiscount && matchesEol;
       })
       .sort((first, second) => {
         switch (sortOption) {
@@ -84,7 +94,11 @@ export function InvestmentRadarPage() {
             return second.investmentScore - first.investmentScore;
         }
       });
-  }, [activeFilters, searchTerm, sortOption]);
+  }, [activeFilters, activeStatus, searchTerm, sortOption]);
+
+  function toggleStatusFilter(status: RadarStatus) {
+    setActiveStatus((current) => (current === status ? null : status));
+  }
 
   function toggleFilter(filter: ToggleFilter) {
     setActiveFilters((current) => ({
@@ -112,7 +126,11 @@ export function InvestmentRadarPage() {
           onThemeChange={setThemeFilter}
         />
 
-        <StatusSummary counts={statusCounts} />
+        <StatusSummary
+          counts={statusCounts}
+          activeStatus={activeStatus}
+          onStatusSelect={toggleStatusFilter}
+        />
 
         <FilterControls
           activeFilters={activeFilters}
@@ -124,7 +142,7 @@ export function InvestmentRadarPage() {
         <section className="opportunity-section" aria-labelledby="top-kansen-title">
           <div className="section-heading">
             <div>
-              <h1 id="top-kansen-title">Top kansen</h1>
+              <h1 id="top-kansen-title">{opportunityTitle}</h1>
               <span className="info-dot" aria-label="Gesorteerd op investeringsdata">
                 i
               </span>
