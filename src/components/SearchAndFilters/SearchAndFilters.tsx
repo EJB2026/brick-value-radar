@@ -47,21 +47,7 @@ export function SearchAndFilters({
         />
       </label>
 
-      <div className="filter-toolbar">
-        <button
-          className="filter-chip filters-button"
-          type="button"
-          onClick={onToggleFiltersOpen}
-          aria-expanded={filtersOpen}
-          aria-controls="mobile-filters-panel"
-          aria-label={filtersOpen ? "Filters verbergen" : "Filters tonen"}
-        >
-          <span aria-hidden="true">≡</span>
-          Filters
-        </button>
-      </div>
-
-      <div className={`filter-row ${filtersOpen ? "open" : "collapsed"}`} id="mobile-filters-panel" aria-label="Filters">
+      <div className="filter-layout">
         <label className={`filter-chip theme-select-chip ${activeFilters.theme !== "all" ? "active" : ""}`}>
           <span aria-hidden="true">☷</span>
           <span>Thema</span>
@@ -77,35 +63,51 @@ export function SearchAndFilters({
             ))}
           </select>
         </label>
-        <button
-          className={`filter-chip ${activeFilters.score80 ? "active" : ""}`}
-          type="button"
-          onClick={() => onToggleFilter("score80")}
-          aria-pressed={activeFilters.score80}
-        >
-          <span className="chip-icon gold" aria-hidden="true">
-            ★
-          </span>
-          Score 80+
-        </button>
-        <button
-          className={`filter-chip ${activeFilters.discount20 ? "active" : ""}`}
-          type="button"
-          onClick={() => onToggleFilter("discount20")}
-          aria-pressed={activeFilters.discount20}
-        >
-          <span aria-hidden="true">◇</span>
-          Korting 20%+
-        </button>
-        <button
-          className={`filter-chip ${activeFilters.eol12 ? "active" : ""}`}
-          type="button"
-          onClick={() => onToggleFilter("eol12")}
-          aria-pressed={activeFilters.eol12}
-        >
-          <span aria-hidden="true">◷</span>
-          EOL &lt; 12 mnd
-        </button>
+        <div className="filter-toolbar">
+          <button
+            className="filter-chip filters-button"
+            type="button"
+            onClick={onToggleFiltersOpen}
+            aria-expanded={filtersOpen}
+            aria-controls="mobile-filters-panel"
+            aria-label={filtersOpen ? "Filters verbergen" : "Filters tonen"}
+          >
+            <span aria-hidden="true">≡</span>
+            Filters
+          </button>
+        </div>
+
+        <div className={`filters-panel ${filtersOpen ? "open" : "collapsed"}`} id="mobile-filters-panel" aria-label="Filters">
+          <button
+            className={`filter-chip ${activeFilters.score80 ? "active" : ""}`}
+            type="button"
+            onClick={() => onToggleFilter("score80")}
+            aria-pressed={activeFilters.score80}
+          >
+            <span className="chip-icon gold" aria-hidden="true">
+              ★
+            </span>
+            Score 80+
+          </button>
+          <button
+            className={`filter-chip ${activeFilters.discount20 ? "active" : ""}`}
+            type="button"
+            onClick={() => onToggleFilter("discount20")}
+            aria-pressed={activeFilters.discount20}
+          >
+            <span aria-hidden="true">◇</span>
+            Korting 20%+
+          </button>
+          <button
+            className={`filter-chip ${activeFilters.eol12 ? "active" : ""}`}
+            type="button"
+            onClick={() => onToggleFilter("eol12")}
+            aria-pressed={activeFilters.eol12}
+          >
+            <span aria-hidden="true">◷</span>
+            EOL &lt; 12 mnd
+          </button>
+        </div>
       </div>
     </section>
   );
