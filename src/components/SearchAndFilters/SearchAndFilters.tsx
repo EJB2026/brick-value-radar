@@ -16,6 +16,8 @@ type SearchAndFiltersProps = {
   onSearchChange: (value: string) => void;
   activeFilters: ActiveFilters;
   onToggleFilter: (filter: ToggleFilter) => void;
+  filtersOpen: boolean;
+  onToggleFiltersOpen: () => void;
   themeOptions: LegoThemeOption[];
   onThemeChange: (value: string) => void;
   sortOption: SortOption;
@@ -27,6 +29,8 @@ export function SearchAndFilters({
   onSearchChange,
   activeFilters,
   onToggleFilter,
+  filtersOpen,
+  onToggleFiltersOpen,
   themeOptions,
   onThemeChange,
 }: SearchAndFiltersProps) {
@@ -43,7 +47,21 @@ export function SearchAndFilters({
         />
       </label>
 
-      <div className="filter-row" aria-label="Filters">
+      <div className="filter-toolbar">
+        <button
+          className="filter-chip filters-button"
+          type="button"
+          onClick={onToggleFiltersOpen}
+          aria-expanded={filtersOpen}
+          aria-controls="mobile-filters-panel"
+          aria-label={filtersOpen ? "Filters verbergen" : "Filters tonen"}
+        >
+          <span aria-hidden="true">≡</span>
+          Filters
+        </button>
+      </div>
+
+      <div className={`filter-row ${filtersOpen ? "open" : "collapsed"}`} id="mobile-filters-panel" aria-label="Filters">
         <label className={`filter-chip theme-select-chip ${activeFilters.theme !== "all" ? "active" : ""}`}>
           <span aria-hidden="true">☷</span>
           <span>Thema</span>
@@ -87,10 +105,6 @@ export function SearchAndFilters({
         >
           <span aria-hidden="true">◷</span>
           EOL &lt; 12 mnd
-        </button>
-        <button className="filter-chip filters-button" type="button" aria-label="Meer filters">
-          <span aria-hidden="true">≡</span>
-          Filters
         </button>
       </div>
     </section>

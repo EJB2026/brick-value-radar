@@ -36,6 +36,10 @@
   color: #7b8494;
 }
 
+.filter-toolbar {
+  display: none;
+}
+
 .filter-row {
   display: flex;
   align-items: center;
@@ -112,18 +116,27 @@
     font-size: 0.82rem;
   }
 
-  .filter-row {
-    overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 4px;
-    scrollbar-width: none;
+  .filter-toolbar {
+    display: flex;
+    justify-content: flex-end;
   }
 
-  .filter-row::-webkit-scrollbar {
+  .filter-row {
+    display: grid;
+    gap: 8px;
+    padding-top: 2px;
+  }
+
+  .filter-row.collapsed {
     display: none;
   }
 
+  .filter-row.open {
+    display: grid;
+  }
+
   .filter-chip {
+    width: 100%;
     min-height: 38px;
     gap: 7px;
     padding: 0 11px;
@@ -132,10 +145,12 @@
   }
 
   .theme-select-chip select {
-    max-width: 112px;
+    max-width: none;
+    width: 100%;
   }
 
   .filters-button {
-    margin-left: 0;
+    width: auto;
+    min-width: 96px;
   }
 }

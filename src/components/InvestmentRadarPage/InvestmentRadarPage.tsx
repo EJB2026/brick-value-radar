@@ -21,6 +21,7 @@ const sortLabels: Record<SortOption, string> = {
 
 export function InvestmentRadarPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     theme: "all",
     score80: false,
@@ -102,6 +103,8 @@ export function InvestmentRadarPage() {
           onSearchChange={setSearchTerm}
           activeFilters={activeFilters}
           onToggleFilter={toggleFilter}
+          filtersOpen={filtersOpen}
+          onToggleFiltersOpen={() => setFiltersOpen((current) => !current)}
           themeOptions={themeOptions}
           onThemeChange={setThemeFilter}
           sortOption={sortOption}
